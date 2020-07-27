@@ -1,25 +1,24 @@
 version: "3"
 
 services:
-  app:
+  api:
     build:
       context: .
     ports:
       - "8000:8000"
     volumes:
       - ./app:/app
-    command: uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000
-    # command: ls
+    command: uvicorn app.main:app --reload --workers 1 --host 0.0.0.0 --port 8000
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db/ing_soft
+      - DATABASE_URL=postgresql://postgres:postgres@db/realstate
     depends_on:
       - db
 
   db:
     image: postgres:12-alpine
     environment:
-      - POSTGRES_DB=ing_soft
+      - POSTGRES_DB=realstate
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports: 
-        -   "5432:5432"
+      - "5432:5432"
