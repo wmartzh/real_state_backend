@@ -11,4 +11,4 @@ gunicorn
 
 # dev
 pytest==5.3.2
-requests==2.22.0
+requests==2.31.0
